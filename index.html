@@ -2,58 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#06060c">
+    <title>Tic Tac Toe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Tic Tae Toc</title>
 </head>
 <body>
 
-    <section class="container">
+    <!-- Background layers -->
+    <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <canvas id="fx" aria-hidden="true"></canvas>
 
-        <div class="painel">
-            
-            <div class="part1">
-               
-                <h2>
-                    You: <span id="yourScore">0</span>  
-                </h2>
+    <!-- Shared gradients for the X / O marks -->
+    <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+        <defs>
+            <linearGradient id="gx" gradientUnits="userSpaceOnUse" x1="20" y1="20" x2="80" y2="80">
+                <stop offset="0" stop-color="#22d3ee"/>
+                <stop offset="1" stop-color="#818cf8"/>
+            </linearGradient>
+            <linearGradient id="go" gradientUnits="userSpaceOnUse" x1="20" y1="20" x2="80" y2="80">
+                <stop offset="0" stop-color="#f472b6"/>
+                <stop offset="1" stop-color="#fb923c"/>
+            </linearGradient>
+        </defs>
+    </svg>
 
-                <h2>
-                    Computer: <span id="computerScore">0</span>
-                </h2>
-                
-                <h2>
-                    Tie: <span id="tie">0</span>
-                </h2> 
-                
+    <main class="app">
+
+        <header class="hero">
+            <span class="badge"><span class="badge-dot"></span>Minimax AI</span>
+            <h1 class="title" id="title">Tic Tac Toe</h1>
+            <p class="subtitle shiny">Can you beat the machine?</p>
+        </header>
+
+        <section class="scoreboard" aria-label="Score">
+            <div class="card score spotlight" data-tone="you" id="cardYou">
+                <span class="label"><span class="dot dot-x"></span>You</span>
+                <span class="value" id="yourScore">0</span>
             </div>
-
-            <div class="part3">
-                <h1 id="result"></h1>
+            <div class="card score spotlight" data-tone="tie">
+                <span class="label"><span class="dot dot-tie"></span>Draws</span>
+                <span class="value" id="tie">0</span>
             </div>
-
-            <div class="part2">
-                
-                
-                <button id="playAgain">PLAY AGAIN</button>
+            <div class="card score spotlight" data-tone="ai" id="cardAi">
+                <span class="label"><span class="dot dot-o"></span>Computer</span>
+                <span class="value" id="computerScore">0</span>
             </div>
+        </section>
 
+        <div class="segmented" role="radiogroup" aria-label="Difficulty" id="difficulty">
+            <span class="pill" aria-hidden="true"></span>
+            <button type="button" role="radio" aria-checked="false" data-level="easy">Easy</button>
+            <button type="button" role="radio" aria-checked="false" data-level="medium">Medium</button>
+            <button type="button" role="radio" aria-checked="false" data-level="hard">Impossible</button>
         </div>
 
-        <div class="grid">
-            <div id="cell1"></div>
-            <div id="cell2"></div>
-            <div id="cell3"></div>
-            <div id="cell4"></div>
-            <div id="cell5"></div>
-            <div id="cell6"></div>
-            <div id="cell7"></div>
-            <div id="cell8"></div>
-            <div id="cell9"></div>
+        <div class="board-wrap" id="boardWrap">
+            <div class="board card spotlight" id="board" role="group" aria-label="Game board">
+                <button type="button" class="cell" data-index="0" aria-label="Cell 1, empty"></button>
+                <button type="button" class="cell" data-index="1" aria-label="Cell 2, empty"></button>
+                <button type="button" class="cell" data-index="2" aria-label="Cell 3, empty"></button>
+                <button type="button" class="cell" data-index="3" aria-label="Cell 4, empty"></button>
+                <button type="button" class="cell" data-index="4" aria-label="Cell 5, empty"></button>
+                <button type="button" class="cell" data-index="5" aria-label="Cell 6, empty"></button>
+                <button type="button" class="cell" data-index="6" aria-label="Cell 7, empty"></button>
+                <button type="button" class="cell" data-index="7" aria-label="Cell 8, empty"></button>
+                <button type="button" class="cell" data-index="8" aria-label="Cell 9, empty"></button>
+                <svg class="win-line" id="winSvg" aria-hidden="true"><line id="winLine" pathLength="1"/></svg>
+            </div>
         </div>
 
-    </section>
+        <div class="status" id="status" aria-live="polite"></div>
+
+        <div class="actions">
+            <button type="button" id="playAgain" class="btn-star magnet"><span>Play again</span></button>
+            <button type="button" id="resetScore" class="btn-ghost magnet">Reset score</button>
+        </div>
+
+        <p class="hint">Press <kbd>1</kbd>–<kbd>9</kbd> to play · <kbd>R</kbd> to restart</p>
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>
