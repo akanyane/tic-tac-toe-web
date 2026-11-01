@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/akanyane/tic-tac-toe-web/compare/v1.1.0...v1.2.0) (2026-11-01)
+
+
+### Features
+
+* adiciona favicon ([ba41221](https://github.com/akanyane/tic-tac-toe-web/commit/ba41221f9a8e3ea375bf57e0e3334d15feb5a776))
+* adiciona favicon ([1eccaa3](https://github.com/akanyane/tic-tac-toe-web/commit/1eccaa39a9aa9e8ea18dd43d71e288b574c104bb))
+
 ## [1.1.0](https://github.com/akanyane/tic-tac-toe-web/compare/v1.0.0...v1.1.0) (2026-11-01)
 
 
